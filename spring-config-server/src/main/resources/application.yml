@@ -1,0 +1,43 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/java-spring-boot-related-stuff/spring-application-external-configuration.git
+          #  Boolean property to control whether the Config Server should clone the Git repository on startup. By default, it is set to true
+          clone-on-start: true
+          # Define the Branch. TAG or Commit ID where to look.
+          default-label: main
+          # Timeout (in seconds) for Git operations like cloning or fetching from the remote repository.
+          timeout: 5
+          # how often the config server will fetch updated config from Git in seconds
+          # default value is 0, meaning the config server will fetch updated configuration from the Git repo every time it is requested.
+          refreshRate: 0
+
+# We can also use below type of configurations as well for secrets:
+#AWS Secrets Manager: https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_aws_secrets_manager_backend
+#JDBC: https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_jdbc_backend
+#Redis: https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_redis_backend
+#S3: https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_aws_s3_backend
+
+# Encrypting and Decrypting Secrets:
+# https://docs:spring:io/spring-cloud-config/docs/current/reference/html/#_encryption_and_decryption:
+
+
+#The HTTP service has resources in the following form:
+#  /{application}/{profile}[/{label}]
+#  /{application}-{profile}.yml
+#  /{label}/{application}-{profile}.yml
+#  /{application}-{profile}.properties
+#  /{label}/{application}-{profile}.properties
+
+
+encrypt:
+  key: APODNU3093r2rbjzxcn09u213asdhy08WRFH
+  # In case if we want to encrypt/decrypt properties at client side., then false
+  enable: true
+
+# Push Notification & Spring Cloud Bus: https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_push_notifications_and_spring_cloud_bus
